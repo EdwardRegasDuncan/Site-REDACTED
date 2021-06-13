@@ -10,33 +10,34 @@ public class CameraController : MonoBehaviour
     //hardcoded camera angles
     Quaternion[] cameraPositions = {
         Quaternion.Euler(0, 280, 0), //facing door
-        Quaternion.Euler(0, 0, 0), //facing desk
         Quaternion.Euler(0, 80, 0) //facing window
     };
 
-    float cameraTurnSpeed = 150f;
+    float cameraTurnSpeed = 100f;
     int cameraPositionValue = 1;
     bool cameraInMotion;
 
+    Coroutine panCamera;
+
     private void Update()
     {
-        if (cameraInMotion)
-        {
-            cameraPanTriggerLeft.SetActive(false);
-            cameraPanTriggerRight.SetActive(false);
-        }
-        else
-        {
-            cameraPanTriggerLeft.SetActive(cameraPositionValue == 0 ? false : true);
-            cameraPanTriggerRight.SetActive(cameraPositionValue == 2 ? false : true);
-        }
+
     }
 
-    public void panCameraToPosition(int positionChange)
+    public void BeginPanCameraToPosition(int positionChange)
     {
-        cameraPositionValue += positionChange;
-        cameraPositionValue = Mathf.Clamp(cameraPositionValue, 0, 2);
-        StartCoroutine("rotateCamera", cameraPositions[cameraPositionValue]);
+        if (!cameraInMotion) 
+        { 
+            cameraPositionValue += positionChange;
+            cameraPositionValue = Mathf.Clamp(cameraPositionValue, 0, 1);
+            panCamera = StartCoroutine("rotateCamera", cameraPositions[cameraPositionValue]);
+        }
+        
+    }
+    public void CancelPanCameraToPosition()
+    {
+        StopCoroutine(panCamera);
+        cameraInMotion = false;
     }
     public IEnumerator rotateCamera(Quaternion targetPosition)
     {
