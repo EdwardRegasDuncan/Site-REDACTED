@@ -6,6 +6,7 @@ public class SecurityCameraController : MonoBehaviour
 {
 
     [SerializeField] GameObject[] _cameras;
+    public GameObject activeCamera;
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class SecurityCameraController : MonoBehaviour
         {
             cam.SetActive(false);
         }
+        switchCamera(1);
     }
 
     public void switchCamera(int camera)
@@ -22,7 +24,8 @@ public class SecurityCameraController : MonoBehaviour
             cam.SetActive(false);
         }
 
-        _cameras[camera].SetActive(true);
+        activeCamera = _cameras[camera];
+        activeCamera.SetActive(true);
     }
 
 }

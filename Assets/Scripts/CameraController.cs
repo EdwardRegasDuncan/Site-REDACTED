@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] GameObject cameraPanTriggerLeft;
     [SerializeField] GameObject cameraPanTriggerRight;
+    [SerializeField] GameObject debugMenu;
 
     //hardcoded camera angles
     Quaternion[] cameraPositions = {

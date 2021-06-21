@@ -15,7 +15,7 @@ public class PositionRelation : MonoBehaviour
         }
         else
         {
-            int nextPosValue = (int)Random.Range(0, (_connectedPositions.Length - 1));
+            int nextPosValue = (int)Random.Range(0, (_connectedPositions.Length));
             GameObject nextPos = _connectedPositions[nextPosValue];
             return nextPos;
         }
