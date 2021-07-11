@@ -6,6 +6,7 @@ public class PositionRelation : MonoBehaviour
 {
     [SerializeField] GameObject[] _connectedPositions;
     public GameObject _directionToPlayer;
+    public List<GameObject> SCPsAtLocation;
 
     public GameObject determineNextPosition()
     {
@@ -19,7 +20,15 @@ public class PositionRelation : MonoBehaviour
             GameObject nextPos = _connectedPositions[nextPosValue];
             return nextPos;
         }
-        
+    }
+
+    public void AddSCPToThisLocation(GameObject scp)
+    {
+        SCPsAtLocation.Add(scp);
+    }
+    public void RemoveSCPFromThisLocation(GameObject scp)
+    {
+        SCPsAtLocation.Remove(scp);
     }
 
 }

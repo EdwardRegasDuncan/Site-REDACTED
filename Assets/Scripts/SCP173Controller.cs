@@ -96,6 +96,8 @@ public class SCP173Controller : MonoBehaviour
 
     private void Move()
     {
+        _currentPosition.GetComponent<PositionRelation>().RemoveSCPFromThisLocation(GetComponent<GameObject>());
+
         moveWeight = 0;
 
         _currentPosition = _currentPosition.GetComponent<PositionRelation>().determineNextPosition();
@@ -103,6 +105,8 @@ public class SCP173Controller : MonoBehaviour
         transform.rotation = _currentPosition.GetComponent<Transform>().rotation;
 
         Debug.Log($"At Postion {_currentPosition.name}");
+
+        _currentPosition.GetComponent<PositionRelation>().AddSCPToThisLocation(GetComponent<GameObject>());
     }
 
     private IEnumerator MovementOppotunity()
